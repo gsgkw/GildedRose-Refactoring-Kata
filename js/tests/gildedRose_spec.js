@@ -75,6 +75,7 @@ describe('Gilded Rose', function() {
     it('quality stays the same', function(){
       assert.equal(gildedRose.items[3].quality, 80 );
     });
+
     it('sellIn stays the same', function(){
       assert.equal(gildedRose.items[3].sellIn, 0 );
     });
@@ -82,9 +83,30 @@ describe('Gilded Rose', function() {
 
   describe('#tickets', function() {
 
-    it('quality increases with age', function(){
-      assert.equal(gildedRose.items[1].quality, 1 );
+    it('quality increases as sellIn date approaches', function(){
+      assert.equal(gildedRose.items[5].quality, 21 );
     });
+
+    it('quality increases by 2 when sellIn date < 10', function(){
+      var times = 5;
+        for(var i=0; i < times; i++){
+            gildedRose.updateQuality();
+        }
+      assert.equal(gildedRose.items[5].quality, 27 );
+    });
+
+    it('quality cannot be more than 50', function(){
+      assert.equal(gildedRose.items[6].quality, 50 );
+    });
+
+    it('quality falls to 0 when sellIn date passed', function(){
+      var times = 5;
+        for(var i=0; i < times; i++){
+            gildedRose.updateQuality();
+        }
+      assert.equal(gildedRose.items[7].quality, 0 );
+    });
+
   });
 
 });
