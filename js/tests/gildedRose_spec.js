@@ -13,6 +13,7 @@ beforeEach(function() {
   items[5] = new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20);
   items[6] = new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49);
   items[7] = new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49);
+  items[8] = new Item('Conjured Mana Cake', 1, 10);
   gildedRose = new Shop(items);
   gildedRose.updateQuality();
 });
@@ -106,7 +107,25 @@ describe('Gilded Rose', function() {
         }
       assert.equal(gildedRose.items[7].quality, 0 );
     });
-
   });
 
+  describe('#conjured items', function() {
+
+    it('quality decreases by 2 during sellIn', function(){
+      assert.equal(gildedRose.items[8].quality, 8 );
+    });
+
+    it('quality decreases by 4 after sellIn', function(){
+      gildedRose.updateQuality();
+      assert.equal(gildedRose.items[8].quality, 4 );
+    });
+
+    it('quality cannot be negative', function(){
+      var times = 5;
+        for(var i=0; i < times; i++){
+            gildedRose.updateQuality();
+        }
+      assert.equal(gildedRose.items[8].quality, 0 );
+    });
+  });
 });
