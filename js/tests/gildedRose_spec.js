@@ -20,7 +20,7 @@ beforeEach(function() {
 
 describe('Gilded Rose', function() {
 
-  describe('#normal items', function() {
+  describe('#ordinary items', function() {
 
     it('sellIn decreases by 1', function(){
       assert.equal(gildedRose.items[0].sellIn, 9 );
@@ -46,7 +46,6 @@ describe('Gilded Rose', function() {
       assert.equal(gildedRose.items[2].sellIn, -6 );
     });
 
-
     it('quality cannot be negative', function(){
       var times = 10;
         for(var i=0; i < times; i++){
@@ -57,9 +56,11 @@ describe('Gilded Rose', function() {
   });
 
   describe('#cheese', function() {
+
     it('quality increases with age', function(){
       assert.equal(gildedRose.items[1].quality, 1 );
     });
+
     it('quality cannot be more than 50', function(){
       var times = 30;
         for(var i=0; i < times; i++){
@@ -68,4 +69,22 @@ describe('Gilded Rose', function() {
       assert.equal(gildedRose.items[1].quality, 50 );
     });
   });
+
+  describe('#legendary items', function() {
+
+    it('quality stays the same', function(){
+      assert.equal(gildedRose.items[3].quality, 80 );
+    });
+    it('sellIn stays the same', function(){
+      assert.equal(gildedRose.items[3].sellIn, 0 );
+    });
+  });
+
+  describe('#tickets', function() {
+
+    it('quality increases with age', function(){
+      assert.equal(gildedRose.items[1].quality, 1 );
+    });
+  });
+
 });
